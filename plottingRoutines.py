@@ -37,7 +37,10 @@ bkblwh = sns.cubehelix_palette(light=1., dark=0.2, start=0.1, hue=1.0, rot=-0.3,
 
 
 # Clip the data for plotting.
-def clip(arr, maxval=None, minval=None, maskNaN=None):
+def clip(arr, maxval=None, minval=None, maskNaN=None, log=False):
+
+    if log:
+	arr = np.log10(arr)
     if maskNaN is not None:
         clipped = np.where(np.isnan(arr), maskNaN, arr)
     else:
